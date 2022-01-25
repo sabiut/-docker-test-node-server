@@ -11,15 +11,15 @@ phases:
    secrets-manager:
     DOCKER_KEY:"/dockerhub/credentials:password"
     DOCKER_USER:"/dockerhub/credentials:username"
+
   post_build: 
     commands: 
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - "docker push dvohra/node-server:latest"
-  phases:
-   install:
-      commands: 
-       - "echo Logging in to Docker Hub..."
-       - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
+  pre_build:
+    commands: 
+      - "echo Logging in to Docker Hub..."
+      - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
   
 version: 0.2
