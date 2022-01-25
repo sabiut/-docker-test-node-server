@@ -1,13 +1,12 @@
 
 env:
-   secrets-manager:
-    DOCKER_KEY:"/dockerhub/credentials:password"
-    DOCKER_USER:"/dockerhub/credentials:username"
+  secrets-manager:
+   DOCKER_KEY:"/dockerhub/credentials:password"
+   DOCKER_USER:"/dockerhub/credentials:username"
 
 phases: 
   build:
-    install: 
-     commands: 
+    commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
       - "docker build -t sabiut/node-server ."
