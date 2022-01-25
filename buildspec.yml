@@ -17,9 +17,9 @@ phases:
       - "echo Pushing the Docker image..."
       - "docker push dvohra/node-server:latest"
   build:
-   install
-    post_build
-     pre_build 
+   install:
+    post_build:
+     pre_build: 
       commands: 
        - "echo Logging in to Docker Hub..."
        - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
