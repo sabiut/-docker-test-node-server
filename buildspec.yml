@@ -16,7 +16,7 @@ phases:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - "docker push dvohra/node-server:latest"
-  pre_build:
+  build:
    install
     post_build
      pre_build 
