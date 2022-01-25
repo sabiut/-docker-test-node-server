@@ -6,7 +6,7 @@ env:
 
 phases: 
   build:
-   install: 
+    install: 
      commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
