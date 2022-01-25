@@ -6,6 +6,11 @@ phases:
       - "echo Building the Docker image..."
       - "docker build -t dvohra/node-server ."
       - "docker tag dvohra/node-server dvohra/node-server:latest"
+
+  env:
+  secrets-manager:
+    DOCKER_KEY: "/dockerhub/credentials:password"
+    DOCKER_USER: "/dockerhub/credentials:username"
   post_build: 
     commands: 
       - "echo Build completed on `date`"
@@ -15,4 +20,5 @@ phases:
     commands: 
       - "echo Logging in to Docker Hub..."
       - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
-version: 0.1
+  
+version: 0.2
