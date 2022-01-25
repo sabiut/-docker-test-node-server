@@ -1,8 +1,8 @@
-
+version: 0.2
 env:
   secrets-manager:
-   DOCKER_KEY:"/dockerhub/credentials:password"
-   DOCKER_USER:"/dockerhub/credential:username"
+   DOCKER_KEY:/dockerhub/credentials:password
+   DOCKER_USER:/dockerhub/credential:username
 
 phases: 
   build:
@@ -23,4 +23,4 @@ phases:
       - "echo Logging in to Docker Hub..."
       - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
   
-version: 0.2
+
