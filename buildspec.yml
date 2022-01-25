@@ -6,8 +6,9 @@ env:
     DOCKER_USER:"/dockerhub/credentials:username"
 
 phases: 
-  build: 
-    commands: 
+  build:
+   install: 
+     commands: 
       - "echo Build started on `date`"
       - "echo Building the Docker image..."
       - "docker build -t dvohra/node-server ."
