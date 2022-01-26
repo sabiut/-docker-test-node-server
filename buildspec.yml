@@ -2,14 +2,14 @@ version: 0.2
 env:
   secrets-manager:
    
-    DOCKER_USER: "/dockerhub/credentials/username"
-    DOCKER_KEY: "/dockerhub/credentials/password"
+    // DOCKER_USER: "/dockerhub/credentials/username"
+    // DOCKER_KEY: "/dockerhub/credentials/password"
 
 phases:   
   pre_build:
     commands: 
       - echo Logging in to Docker Hub
-      - echo "$DOCKER_KEY" | docker login --username sabiut --password-stdin 
+      - echo ${{secrets.DOCKER_KEY}} | docker login --username ${{secretsDOCKER_USER}}  --password-stdin 
   
 
   build:
