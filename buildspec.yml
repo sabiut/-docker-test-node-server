@@ -2,8 +2,8 @@ version: 0.2
 env:
   secrets-manager:
    
-    DOCKER_USER: "/dockerhub/credential/username"
-    DOCKER_KEY: "/dockerhub/credentials/password"
+    DOCKER_USER: "/dockerhub/credentials/username-yGCpoO"
+    DOCKER_KEY: "/dockerhub/credentials/password-vYHoVf"
 
 phases: 
   build:
