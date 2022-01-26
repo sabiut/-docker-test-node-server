@@ -1,25 +1,26 @@
-version: 0.1
+version: 0.2
 env:
   secrets-manager:
    
     DOCKER_USER: "/dockerhub/credentials/username"
     DOCKER_KEY: "/dockerhub/credentials/password"
 
-phases: 
-  build:
-    commands: 
-      - "echo Build started on `date`"
-      - "echo Building the Docker image..."
-      - "docker build -t sabiut/node-server ."
-      - "docker tag sabiut/node-server sabiut/node-server:latest"    
-  post_build: 
-    commands: 
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push sabiut/node-server:latest"
+phases   
   pre_build:
     commands: 
-      - "echo Logging in to Docker Hub..."
-      - "docker login --username $DOCKER_USER --password-stdin $DOCKER_KEY"
+      - echo Logging in to Docker Hub...
+      - docker login --username $DOCKER_USER --password-stdin $DOCKER_KEY
   
 
+  build:
+    commands: 
+      - echo Build started on `date`
+      - echo Building the Docker image
+      - docker build -t sabiut/node-server .
+      - docker tag sabiut/node-server sabiut/node-server:latest 
+  
+  post_build: 
+    commands: 
+      - echo Build completed at `date`
+      - echo Pushing the Docker image
+      - docker push sabiut/node-server:latest
