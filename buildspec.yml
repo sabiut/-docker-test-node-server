@@ -5,10 +5,10 @@ env:
     DOCKER_USER: "/dockerhub/credentials/username"
     DOCKER_KEY: "/dockerhub/credentials/password"
 
-phases   
+phases:   
   pre_build:
     commands: 
-      - echo Logging in to Docker Hub...
+      - echo Logging in to Docker Hub
       - docker login --username $DOCKER_USER --password-stdin $DOCKER_KEY
   
 
