@@ -15,7 +15,8 @@ phases:
   pre_build:
     commands: 
       - "echo Logging in to Docker Hub..."
-      - "docker login --username sabiut --password-stdin $DOCKER_KEY"
+      - docker login --username $DOCKER_USER --password-stdin $DOCKER_KEY
+      
       
 
   post_build: 
