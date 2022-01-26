@@ -1,0 +1,27 @@
+version: 0.2
+//env:
+  //secrets-manager:
+   
+    // DOCKER_USER: "/dockerhub/credentials/username"
+    // DOCKER_KEY: "/dockerhub/credentials/password"
+
+phases:   
+  pre_build:
+    commands: 
+      - echo Logging in to Docker Hub
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/o6j3x0j6
+      //- echo ${{secrets.DOCKER_KEY}} | docker login --username ${{secretsDOCKER_USER}}  --password-stdin 
+  build:
+    commands: 
+      - echo Build started on `date`
+      - echo Building the Docker image
+      //- docker build -t sabiut/node-server .
+      - docker build -t test_ecr .
+      - docker tag test_ecr:latest public.ecr.aws/o6j3x0j6/test_ecr:latest
+      //- docker tag sabiut/node-server sabiut/node-server:latest 
+  post_build: 
+    commands: 
+      - echo Build completed at `date`
+      - echo Pushing the Docker image
+      - docker push public.ecr.aws/o6j3x0j6/test_ecr:latest
+      //- docker push sabiut/node-server:latest
