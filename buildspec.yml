@@ -14,14 +14,15 @@ phases:
       - "docker tag sabiut/node-server sabiut/node-server:latest"
 
   
-  post_build: 
-    commands: 
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push sabiut/node-server:latest"
   pre_build:
     commands: 
       - "echo Logging in to Docker Hub..."
       - "docker login --username $DOCKER_USER --password $DOCKER_KEY"
+
+   post_build: 
+    commands: 
+      - "echo Build completed on `date`"
+      - "echo Pushing the Docker image..."
+      - "docker push sabiut/node-server:latest"
   
 
