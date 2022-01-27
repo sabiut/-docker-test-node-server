@@ -4,13 +4,13 @@ env:
    
     // DOCKER_USER: /dockerhub/credentials/username
     // DOCKER_KEY: /dockerhub/credentials/password
-    DOCKER_TOKEN: dockertoken
+    //DOCKER_TOKEN: dockertoken
 
 phases:   
   pre_build:
     commands: 
       - echo Logging in to Docker Hub
-      - echo $DOCKER_TOKEN | docker login -u sabiut --password-stdin 
+      - echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin 
   build:
     commands: 
       - echo Build started on `date`
