@@ -1,15 +1,15 @@
 version: 0.2
-//env:
-  //secrets-manager:
+env:
+  secrets-manager:
    
-    // DOCKER_USER: "/dockerhub/credentials/username"
-    // DOCKER_KEY: "/dockerhub/credentials/password"
+    DOCKER_USER: "/dockerhub/credentials/username"
+    DOCKER_KEY: "/dockerhub/credentials/password"
 
 phases:   
   pre_build:
     commands: 
       - echo Logging in to Docker Hub
-      - echo ${{secrets.DOCKER_KEY}} | docker login --username ${{secretsDOCKER_USER}}  --password-stdin 
+      - docker login --username ${{secret.DOCKER_USER}} --password-stdin ${{secret.DOCKER_KEY}}
   build:
     commands: 
       - echo Build started on `date`
