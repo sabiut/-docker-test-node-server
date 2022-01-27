@@ -3,13 +3,14 @@ env:
   secrets-manager:
    
     DOCKER_USER: /dockerhub/credentials/username
+    DOCKER_KEY: /dockerhub/credentials/password
     DOCKER_TOKEN: dockertoken
 
 phases:   
   pre_build:
     commands: 
       - echo Logging in to Docker Hub
-      - echo $DOCKER_TOKEN | docker login -u sabiut --password-stdin 
+      - echo $DOCKER_KEY | docker login -u sabiut --password-stdin 
   build:
     commands: 
       - echo Build started on `date`
