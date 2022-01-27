@@ -1,24 +1,23 @@
 version: 0.2
-env:
-  secrets-manager:
-   
-    // DOCKER_USER: /dockerhub/credentials/username
-    // DOCKER_KEY: /dockerhub/credentials/password
-    //DOCKER_TOKEN: dockertoken
 
-phases:   
+phases:
   pre_build:
-    commands: 
-      - echo Logging in to Docker Hub
-      - echo ${{secrets.DOCKER_HUB_ACCESS_TOKEN}} | docker login -u sabiut --password-stdin 
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - echo $AWS_DEFAULT_REGION
+      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
+      - REPOSITORY_URI=public.ecr.aws/o6j3x0j6/test_ecr
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
-    commands: 
+    commands:
       - echo Build started on `date`
-      - echo Building the Docker image
-      - docker build -t sabiut/node-server .
-      - docker tag sabiut/node-server sabiut/node-server:latest 
-  post_build: 
-    commands: 
-      - echo Build completed at `date`
-      - echo Pushing the Docker image
-      - docker push sabiut/node-server:latest
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
