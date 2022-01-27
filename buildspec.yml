@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands: 
       - echo Logging in to Docker Hub
-      - docker login --username ${{secrets.DOCKER_USER}} --password-stdin ${{secrets.DOCKER_KEY}}
+      - echo ${{secrets.DOCKER_KEY}} | docker login --username ${{secrets.DOCKER_USER}} --password-stdin 
   build:
     commands: 
       - echo Build started on `date`
