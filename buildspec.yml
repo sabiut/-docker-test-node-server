@@ -23,5 +23,6 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 artifacts:
   files:
-      - '/imagedefinitions.json'
+      - imagedefinitions.json
+  name: imagedefinitions
     
