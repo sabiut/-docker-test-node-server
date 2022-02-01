@@ -1,6 +1,6 @@
 [
     {
-        "name": "My-Test_node-server",
+        "name": "node-server-container",
         "imageUri": "762934917509.dkr.ecr.us-east-2.amazonaws.com/nod-server"
     }
 ]
