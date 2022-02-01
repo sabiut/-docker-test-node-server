@@ -1,6 +1,6 @@
 [
     {
-        "name": "node-server:latest",
+        "name": "My-Test_node-server",
         "imageUri": "762934917509.dkr.ecr.us-east-2.amazonaws.com/nod-server"
     }
 ]
